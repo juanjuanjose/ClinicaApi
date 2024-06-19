@@ -3,6 +3,8 @@ package com.ClinicaApi.controller;
 import com.ClinicaApi.model.Medico;
 import com.ClinicaApi.service.MedicoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,10 +16,10 @@ public class MedicoController {
     @Autowired
     private MedicoService medicoService;
 
-    @PostMapping
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Medico> createMedico(@RequestBody Medico medico) {
-        Medico savedMedico = medicoService.save(medico);
-        return ResponseEntity.ok(savedMedico);
+        // lógica para crear el médico
+        return new ResponseEntity<>(medico, HttpStatus.CREATED);
     }
 
     @GetMapping
